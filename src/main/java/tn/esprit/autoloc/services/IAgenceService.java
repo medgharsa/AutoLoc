@@ -7,6 +7,7 @@ import java.util.List;
 public interface IAgenceService {
 
     Agence ajouterAgence(Agence agence);
+    Agence ajouterAgenceEtAffecterVehicules(Agence agence);
     Agence modifierAgence(Agence agence);
     List<Agence> consulterAgences();
     Agence consulterAgenceById(long idAgence);

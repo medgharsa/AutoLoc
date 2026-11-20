@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,5 +28,6 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agence_id")
+    @JsonIgnoreProperties({"employees", "vehicules", "hibernateLazyInitializer", "handler"})
     private Agence agence;
 }

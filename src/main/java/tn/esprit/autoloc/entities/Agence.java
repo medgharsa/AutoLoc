@@ -3,6 +3,8 @@ package tn.esprit.autoloc.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Entity
@@ -29,6 +31,7 @@ public class Agence {
     @Column(nullable = false, length = 20)
     private String telephone;
 
+    @JsonIgnoreProperties({"agence", "reservations", "maintenances"})
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
     private List<Vehicule> vehicules;
 

@@ -18,6 +18,11 @@ public class AgenceController {
         return agenceService.ajouterAgence(agence);
     }
 
+    @PostMapping("/ajouterAgenceEtAffecterVehicules")
+    public Agence ajouterAgenceEtAffecterVehicules(@RequestBody Agence agence){
+        return agenceService.ajouterAgenceEtAffecterVehicules(agence);
+    }
+
     @PutMapping
     public Agence modifierAgence(@RequestBody Agence agence){
         return agenceService.modifierAgence(agence);

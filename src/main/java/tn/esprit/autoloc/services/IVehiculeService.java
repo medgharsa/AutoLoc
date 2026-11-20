@@ -7,6 +7,8 @@ import java.util.List;
 public interface IVehiculeService {
 
     Vehicule ajouterVehicule(Vehicule vehicule);
+    Vehicule affecterEquipement(Long idVehicule, Long idEquipement);
+    Vehicule desaffecterEquipement(Long idVehicule, Long idEquipement);
     Vehicule modifierVehicule(Vehicule vehicule);
     List<Vehicule> consulterVehicules();
     Vehicule consulterVehiculeById(long idVehicule);
