@@ -1,6 +1,7 @@
 package tn.esprit.autoloc.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.entities.Agence;
@@ -8,6 +9,8 @@ import tn.esprit.autoloc.entities.Vehicule;
 import tn.esprit.autoloc.repositories.AgenceRepository;
 import tn.esprit.autoloc.repositories.VehiculeRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,5 +67,17 @@ public class IAgenceServiceImp implements IAgenceService {
     @Override
     public void supprimerAgenceById(long idAgence) {
         agenceRepository.deleteById(idAgence);
+    }
+
+    private static final DateTimeFormatter FORMAT_DATE = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+    /**
+     * Question 2 : s'exécute 2 minutes (120 000 ms) après la FIN de chaque exécution précédente.
+     */
+    @Scheduled(fixedDelay = 120000)
+    public void suivreNombreAgences() {
+        List<Agence> agences = agenceRepository.findAll();
+        System.out.println("[Suivi agences] Nombre total d'agences : " + agences.size());
+        System.out.println("[Suivi agences] Date et heure de vérification : " + LocalDateTime.now().format(FORMAT_DATE));
     }
 }
